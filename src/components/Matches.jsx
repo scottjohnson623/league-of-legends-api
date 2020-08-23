@@ -80,7 +80,7 @@ export default function Matches() {
               id={divId}
               className="matchcardwin"
               onClick={(e) => {
-                analyzeGame(e.target.id);
+                analyzeGame(divId);
               }}
             >
               <div className="splashimg">
@@ -108,7 +108,7 @@ export default function Matches() {
               id={divId}
               className="matchcardloss"
               onClick={(e) => {
-                analyzeGame(e.target.id);
+                analyzeGame(divId);
               }}
             >
               <div className="splashimg">
