@@ -41,7 +41,6 @@ app.get("/matchtimeline/:matchId", async (req, res) => {
   let matchTimeline = await axios.get(
     `https://na1.api.riotgames.com/lol/match/v4/timelines/by-match/${req.params.matchId}?api_key=${process.env.api_key}`
   );
-  console.log(matchTimeline.data);
   res.send(matchTimeline.data);
 });
 
