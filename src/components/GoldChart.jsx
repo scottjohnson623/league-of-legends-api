@@ -59,11 +59,12 @@ export default function GoldChart() {
   };
   return (
     <>
-      <div className="body">
+      <div className="chartbody">
         <div className="chart">
           <CanvasJSChart options={goldOptions} />
           <CanvasJSChart options={csOptions} />
         </div>
+        <br />
         <MDBBtn
           className="backbutton"
           color="primary"
@@ -76,7 +77,7 @@ export default function GoldChart() {
             });
           }}
         >
-          <img src="https://cdn.pixabay.com/photo/2016/09/05/10/50/app-1646213_960_720.png" />
+          Go Back
         </MDBBtn>
       </div>
     </>
