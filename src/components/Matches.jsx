@@ -92,7 +92,13 @@ export default function Matches() {
                 </b>
                 <br />
                 <b>Match ID</b> : {elem.gameId} <br />
-                {playerInfo.win ? <>Won the game!</> : <>Lost the game!</>}
+                {playerInfo.win ? (
+                  <>
+                    <b>Won the game!</b>
+                  </>
+                ) : (
+                  <>Lost the game!</>
+                )}
                 <br />
                 <b>Gold earned</b>: {playerInfo.goldEarned}
                 <br />
