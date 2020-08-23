@@ -2,6 +2,7 @@ import axios from "axios";
 import championData from "../data/champion.json";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { MDBBtn } from "mdbreact";
 
 export default function SearchField() {
   // pulling state in from store
@@ -50,39 +51,45 @@ export default function SearchField() {
   }
 
   return (
-    <div className="App">
-      Summoner Name:{" "}
-      <input
-        type="text"
-        onChange={(e) => {
-          dispatch({ type: "SET_SUMMONERNAME", payload: e.target.value });
-        }}
-      ></input>{" "}
-      {summonerName}
-      <br />
-      Champion:
-      <select
-        name="Champion"
-        label="champion"
-        onChange={(e) => {
-          dispatch({ type: "SET_CHAMPIONID", payload: e.target.value });
-        }}
-      >
-        {makechampionSelectBar()}
-      </select>
-      {championID}
-      <br />
-      <button
-        onClick={() => {
-          getData();
-          dispatch({
-            type: "SET_CHAMPIONNAME",
-            payload: findChampionName(championID),
-          });
-        }}
-      >
-        SEND IT
-      </button>
+    <div className="searchbar">
+      <div className="md-form">
+        <input
+          type="text"
+          id="summname"
+          className="form-control"
+          placeholder="Summoner Name"
+          onChange={(e) => {
+            dispatch({ type: "SET_SUMMONERNAME", payload: e.target.value });
+          }}
+        />
+        <br />
+        Champion:
+        <select
+          name="Champion"
+          label="champion"
+          className="browser-default custom-select"
+          onChange={(e) => {
+            dispatch({ type: "SET_CHAMPIONID", payload: e.target.value });
+          }}
+        >
+          {makechampionSelectBar()}
+        </select>
+        <br />
+        <MDBBtn
+          color="primary"
+          outline
+          rounded
+          onClick={() => {
+            getData();
+            dispatch({
+              type: "SET_CHAMPIONNAME",
+              payload: findChampionName(championID),
+            });
+          }}
+        >
+          Search
+        </MDBBtn>
+      </div>
     </div>
   );
 }

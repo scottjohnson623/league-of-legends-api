@@ -29,14 +29,28 @@ export default function Matches() {
     });
     return datapoints;
   }
+  function generateCSDataPoints(object, participant) {
+    let datapoints = [];
+    object.frames.forEach((frame, i) => {
+      let userData;
+      for (const part in frame.participantFrames) {
+        if (frame.participantFrames[part].participantId == participant) {
+          userData = frame.participantFrames[part];
+        }
+      }
+      datapoints.push({ x: i, y: userData.minionsKilled });
+    });
+    return datapoints;
+  }
 
   async function analyzeGame(id) {
     let matchId = id.substring(0, 10);
     let participant = id.substring(10);
     let timeline = await axios.get(`matchtimeline/${matchId}`);
-    let datapoints = generateGoldDataPoints(timeline.data, participant);
-    console.log("datapoints", datapoints);
-    dispatch({ type: "SET_MATCHDATA", payload: datapoints });
+    let golddatapoints = generateGoldDataPoints(timeline.data, participant);
+    let csdatapoints = generateCSDataPoints(timeline.data, participant);
+    dispatch({ type: "SET_GOLDGRAPH", payload: golddatapoints });
+    dispatch({ type: "SET_CSGRAPH", payload: csdatapoints });
     dispatch({ type: "SET_VIEW", payload: "charts" });
   }
   //function to make cards of match history
@@ -57,31 +71,75 @@ export default function Matches() {
       let divId = JSON.stringify(elem.gameId).concat(
         JSON.stringify(playerParticipantId)
       );
-      console.log(divId);
       return (
-        <div
-          key={i}
-          id={divId}
-          className="matchcard"
-          onClick={(e) => {
-            analyzeGame(e.target.id);
-          }}
-        >
-          Date:{moment(elem.timestamp).format("MMMM Do YYYY, h:mm:ss a")} <br />
-          Match ID : {elem.gameId} <br />
-          {playerInfo.win ? <>Won the game!</> : <>Lost the game!</>}
-          <br />
-          Gold earned: {playerInfo.goldEarned}
-          <br />
-          K/D/A: {playerInfo.kills} /{playerInfo.deaths} /{playerInfo.assists}
-          <br />
-          CS:
-          {playerInfo.totalMinionsKilled}
-          Img:
-          <img src={imgSrc} alt="championIcon" />
-          ParticipantID: {playerParticipantId}
-          <br />
-        </div>
+        <>
+          {" "}
+          {playerInfo.win ? (
+            <div
+              key={i}
+              id={divId}
+              className="matchcardwin"
+              onClick={(e) => {
+                analyzeGame(e.target.id);
+              }}
+            >
+              <div className="splashimg">
+                <img src={imgSrc} alt="championIcon" />
+              </div>
+              <div className="cardtext">
+                <b>
+                  {moment(elem.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+                </b>
+                <br />
+                <b>Match ID</b> : {elem.gameId} <br />
+                {playerInfo.win ? <>Won the game!</> : <>Lost the game!</>}
+                <br />
+                <b>Gold earned</b>: {playerInfo.goldEarned}
+                <br />
+                <b>K/D/A</b>: {playerInfo.kills} /{playerInfo.deaths} /
+                {playerInfo.assists}
+                <br />
+                <b>CS</b>:{playerInfo.totalMinionsKilled}
+              </div>
+            </div>
+          ) : (
+            <div
+              key={i}
+              id={divId}
+              className="matchcardloss"
+              onClick={(e) => {
+                analyzeGame(e.target.id);
+              }}
+            >
+              <div className="splashimg">
+                <img src={imgSrc} alt="championIcon" />
+              </div>
+              <div className="cardtext">
+                <b>
+                  {moment(elem.timestamp).format("MMMM Do YYYY, h:mm:ss a")}
+                </b>
+                <br />
+                <b>Match ID</b> : {elem.gameId} <br />
+                {playerInfo.win ? (
+                  <>
+                    <b>Won the game!</b>
+                  </>
+                ) : (
+                  <>
+                    <b>Lost the game!</b>
+                  </>
+                )}
+                <br />
+                <b>Gold earned</b>: {playerInfo.goldEarned}
+                <br />
+                <b>K/D/A</b>: {playerInfo.kills} /{playerInfo.deaths} /
+                {playerInfo.assists}
+                <br />
+                <b>CS</b>:{playerInfo.totalMinionsKilled}
+              </div>
+            </div>
+          )}
+        </>
       );
     });
   }

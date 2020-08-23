@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap");
 .App {
-  text-align: center;
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -38,19 +40,71 @@
 }
 
 .matches {
+  position: relative;
+  top: 5%;
   display: flex;
   width: 50vw;
-  background-color: red;
   flex-wrap: wrap;
   height: auto;
   margin: auto;
   justify-content: center;
   align-items: center;
 }
-.matchcard {
-  background-color: grey;
+.matchcardwin {
+  background-color: #add8e6;
   padding: 0;
   margin: 20px;
   height: 20vh;
   width: 45%;
+  cursor: pointer;
+  border: 5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.matchcardloss {
+  background-color: #ffcccb;
+  padding: 0;
+  margin: 20px;
+  height: 20vh;
+  width: 45%;
+  cursor: pointer;
+  border: 5px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header {
+  height: 10vh;
+  background-color: red;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  font-size: 60px;
+  font-family: "Bungee Inline";
+  text-align: center;
+  z-index: 2;
+}
+.body {
+  margin-top: 15vh;
+  height: 85vh;
+}
+.searchbar {
+  margin: auto;
+  width: 30%;
+  height: 20%;
+}
+.chart {
+  margin: auto;
+  width: 40%;
+  height: 30%;
+}
+.splashimg {
+  float: left;
+  margin-left: 15px;
+}
+.cardtext {
+  font-size: 19px;
+  width: 60%;
+  float: right;
 }

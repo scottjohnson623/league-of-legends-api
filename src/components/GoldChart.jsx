@@ -1,60 +1,83 @@
 import React, { useEffect } from "react";
 import CanvasJSReact from "../assets/canvasjs.react";
 import { useSelector, useDispatch } from "react-redux";
+import { MDBBtn } from "mdbreact";
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default function GoldChart() {
   const dispatch = useDispatch();
-  const matchData = useSelector((state) => {
-    return state.matchData;
+  const goldGraph = useSelector((state) => {
+    return state.goldGraph;
   });
-  const chartReady = useSelector((state) => state.chartReady);
-  const chartOptions = useSelector((state) => state.chartOptions);
-  let setChartOptions = () => {
-    console.log("Setting chart options", matchData);
-    dispatch({
-      type: "SET_CHARTOPTIONS",
-      payload: {
-        theme: "light2", // "light1", "dark1", "dark2"
-        animationEnabled: true,
-        zoomEnabled: true,
-        title: {
-          text: "Gold Gained",
-        },
-        axisY: {
-          title: "Gold",
-          interval: 500,
-        },
-        axisX: {
-          title: "Minute",
-          prefix: "W",
-          interval: 1,
-        },
-        data: [
-          {
-            type: "line",
-            dataPoints: matchData,
-          },
-        ],
+  const csGraph = useSelector((state) => state.csGraph);
+  const goldOptions = {
+    theme: "light2", // "light1", "dark1", "dark2"
+    animationEnabled: true,
+    zoomEnabled: true,
+    title: {
+      text: "Gold Gained",
+    },
+    axisY: {
+      title: "Gold",
+      interval: 500,
+    },
+    axisX: {
+      title: "Minute",
+      suffix: ":00",
+      interval: 1,
+    },
+    data: [
+      {
+        type: "line",
+        dataPoints: goldGraph,
       },
-    });
-    dispatch({ type: "TOGGLE_CHARTREADY" });
+    ],
   };
-  useEffect(() => {
-    setChartOptions();
-  }, []);
+  const csOptions = {
+    theme: "light2", // "light1", "dark1", "dark2"
+    animationEnabled: true,
+    zoomEnabled: true,
+    title: {
+      text: "Minions Killed",
+    },
+    axisY: {
+      title: "Minions Killed",
+      interval: 10,
+    },
+    axisX: {
+      title: "Minute",
+      suffix: ":00",
+      interval: 1,
+    },
+    data: [
+      {
+        type: "line",
+        dataPoints: csGraph,
+      },
+    ],
+  };
   return (
     <>
-      {chartReady ? (
-        <>
-          <div className="chart">
-            <CanvasJSChart options={chartOptions} />{" "}
-          </div>
-        </>
-      ) : (
-        <></>
-      )}
+      <div className="body">
+        <MDBBtn
+          color="primary"
+          outline
+          rounded
+          onClick={() => {
+            dispatch({
+              type: "SET_VIEW",
+              payload: "main",
+            });
+          }}
+        >
+          Back
+        </MDBBtn>
+        <div className="chart">
+          <CanvasJSChart options={goldOptions} />
+          <CanvasJSChart options={csOptions} />
+        </div>
+      </div>
     </>
   );
 }

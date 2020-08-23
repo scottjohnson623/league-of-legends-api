@@ -7,7 +7,8 @@ let initialState = {
   matches: [],
   view: "main",
   championName: "",
-  matchData: {},
+  goldGraph: {},
+  csGraph: {},
   participantID: "",
   chartOptions: {},
   chartReady: false,
@@ -33,8 +34,8 @@ const reducer = (state = initialState, action) => {
     case "SET_CHAMPIONNAME": {
       return { ...state, championName: action.payload };
     }
-    case "SET_MATCHDATA": {
-      return { ...state, matchData: action.payload };
+    case "SET_GOLDGRAPH": {
+      return { ...state, goldGraph: action.payload };
     }
     case "SET_PARTICIPANTID": {
       return { ...state, participantID: action.payload };
@@ -45,6 +46,9 @@ const reducer = (state = initialState, action) => {
     case "TOGGLE_CHARTREADY": {
       console.log("changing chartReady to:", !state.chartReady);
       return { ...state, chartReady: !state.chartReady };
+    }
+    case "SET_CSGRAPH": {
+      return { ...state, csGraph: action.payload };
     }
     default: {
       return state;
