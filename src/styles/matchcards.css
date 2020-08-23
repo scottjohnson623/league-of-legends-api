@@ -1,53 +1,104 @@
-.matches {
-  position: relative;
-  top: 5%;
-  display: flex;
-  width: 50vw;
-  flex-wrap: wrap;
-  height: auto;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-}
-.matchcardwin {
-  background-color: #add8e6;
-  padding: 0;
-  margin: 20px;
-  height: 20vh;
-  width: 45%;
-  cursor: pointer;
-  border: 5px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 .matchcardwin:hover {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px 6px #ccc;
 }
-.matchcardloss {
-  background-color: #ffcccb;
-  padding: 0;
-  margin: 20px;
-  height: 20vh;
-  width: 45%;
-  cursor: pointer;
-  border: 5px solid black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 .matchcardloss:hover {
   transform: scale(1.05);
   box-shadow: 6px 6px 10px 6px #ccc;
 }
 
-.splashimg {
+.splash {
   float: left;
   margin-left: 15px;
 }
-.cardtext {
-  font-size: 19px;
-  width: 60%;
-  float: right;
+@media only screen and (max-width: 600px) {
+  .splashimg {
+    height: 80%;
+    width: 80%;
+  }
+  .cardtext {
+    font-size: 10px;
+    width: 60%;
+    float: right;
+  }
+
+  .matchcardloss {
+    background-color: #ffcccb;
+    padding: 0;
+    margin: 20px;
+    height: 20vh;
+    width: 80%;
+    cursor: pointer;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .matchcardwin {
+    background-color: #add8e6;
+    padding: 0;
+    margin: 20px;
+    height: 20vh;
+    width: 80%;
+    cursor: pointer;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .matches {
+    position: relative;
+    top: 5%;
+    display: flex;
+    width: 90vw;
+    flex-wrap: wrap;
+    height: auto;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .cardtext {
+    font-size: 19px;
+    width: 60%;
+    float: right;
+  }
+
+  .matchcardloss {
+    background-color: #ffcccb;
+    padding: 0;
+    margin: 20px;
+    height: 20vh;
+    width: 45%;
+    cursor: pointer;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .matchcardwin {
+    background-color: #add8e6;
+    padding: 0;
+    margin: 20px;
+    height: 20vh;
+    width: 45%;
+    cursor: pointer;
+    border: 5px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .matches {
+    position: relative;
+    top: 5%;
+    display: flex;
+    width: 50vw;
+    flex-wrap: wrap;
+    height: auto;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+  }
 }

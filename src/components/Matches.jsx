@@ -83,8 +83,8 @@ export default function Matches() {
                 analyzeGame(divId);
               }}
             >
-              <div className="splashimg">
-                <img src={imgSrc} alt="championIcon" />
+              <div className="splash">
+                <img className="splashimg" src={imgSrc} alt="championIcon" />
               </div>
               <div className="cardtext">
                 <b>
@@ -117,8 +117,8 @@ export default function Matches() {
                 analyzeGame(divId);
               }}
             >
-              <div className="splashimg">
-                <img src={imgSrc} alt="championIcon" />
+              <div className="splash">
+                <img class="splashimg" src={imgSrc} alt="championIcon" />
               </div>
               <div className="cardtext">
                 <b>

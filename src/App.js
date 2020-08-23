@@ -13,7 +13,6 @@ function App() {
       <div className="body">
         {view === "main" ? (
           <>
-            {" "}
             <SearchField />
             <Matches />
           </>
