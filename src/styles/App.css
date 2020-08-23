@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.matches {
+  display: flex;
+  width: 50vw;
+  background-color: red;
+  flex-wrap: wrap;
+  height: auto;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+.matchcard {
+  background-color: grey;
+  padding: 0;
+  margin: 20px;
+  height: 20vh;
+  width: 45%;
+}

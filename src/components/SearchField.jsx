@@ -8,44 +8,47 @@ export default function SearchField() {
   let summonerName = useSelector((state) => {
     return state.summonerName;
   });
-  let accountID = useSelector((state) => {
-    return state.accountID;
-  });
   let championID = useSelector((state) => {
     return state.championID;
   });
-  let matches = useSelector((state) => {
-    return state.matches;
-  });
-  let view = useSelector((state) => {
-    return state.view;
-  });
   const dispatch = useDispatch();
+
+  //populating select bar with champions
   function makechampionSelectBar() {
     let result = [];
     for (const key in championData.data) {
       result.push(
-        <option key={key} value={championData.data[key].key}>
+        <option
+          id="championselect"
+          key={key}
+          value={championData.data[key].key}
+          label={key}
+        >
           {key}
         </option>
       );
     }
     return result;
   }
+  function findChampionName(id) {
+    for (const champion in championData.data) {
+      if (championData.data[champion].key == id) {
+        return championData.data[champion].name;
+      }
+    }
+  }
 
   async function getData() {
+    console.log("getData");
     try {
-      let match = await axios.get(`/${summonerName}/${championID}`);
+      let match = await axios.get(`/api/${summonerName}/${championID}`);
+      console.log("match", match);
       dispatch({ type: "SET_MATCHES", payload: match.data });
     } catch (err) {
       console.log(err);
     }
   }
-  function postMatchData() {
-    return matches.map((elem) => {
-      return <p>{elem.gameId}</p>;
-    });
-  }
+
   return (
     <div className="App">
       Summoner Name:{" "}
@@ -72,11 +75,14 @@ export default function SearchField() {
       <button
         onClick={() => {
           getData();
+          dispatch({
+            type: "SET_CHAMPIONNAME",
+            payload: findChampionName(championID),
+          });
         }}
       >
         SEND IT
       </button>
-      {postMatchData()}
     </div>
   );
 }

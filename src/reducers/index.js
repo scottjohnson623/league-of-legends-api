@@ -6,6 +6,11 @@ let initialState = {
   championID: "",
   matches: [],
   view: "main",
+  championName: "",
+  matchData: {},
+  participantID: "",
+  chartOptions: {},
+  chartReady: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +29,22 @@ const reducer = (state = initialState, action) => {
     }
     case "SET_VIEW": {
       return { ...state, view: action.payload };
+    }
+    case "SET_CHAMPIONNAME": {
+      return { ...state, championName: action.payload };
+    }
+    case "SET_MATCHDATA": {
+      return { ...state, matchData: action.payload };
+    }
+    case "SET_PARTICIPANTID": {
+      return { ...state, participantID: action.payload };
+    }
+    case "SET_CHARTOPTIONS": {
+      return { ...state, chartOptions: action.payload };
+    }
+    case "TOGGLE_CHARTREADY": {
+      console.log("changing chartReady to:", !state.chartReady);
+      return { ...state, chartReady: !state.chartReady };
     }
     default: {
       return state;

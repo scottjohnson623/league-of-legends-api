@@ -9,11 +9,10 @@ require("dotenv").config();
 app.use(express.static(path.resolve(__dirname, "..", "build")));
 app.use(express.json());
 
-let api_key = "RGAPI-1ee5419d-7e4f-4a3c-b8ee-15ebc1313e68";
-
-//get matches for a summoner on a certain champion
-
-app.get("/:summonername/:champid", async (req, res) => {
+app.get("/api/:summonername/:champid", async (req, res) => {
+  if (req.params.summonername === "src") {
+    return res.send();
+  }
   let summ_id = await axios.get(
     `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.params.summonername}?api_key=${process.env.api_key}`
   );
@@ -22,18 +21,18 @@ app.get("/:summonername/:champid", async (req, res) => {
     `https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/${summ_id}?champion=${req.params.champid}&api_key=${process.env.api_key}`
   );
   match_data = match_data.data;
-
-  console.log(match_data.matches);
-  res.status(200).send(match_data.matches);
-});
-
-//get general match info
-
-app.get("/match/:matchId", async (req, res) => {
-  let matchData = await axios.get(
-    `https://na1.api.riotgames.com/lol/match/v4/matches/${req.params.matchId}?api_key=${process.env.api_key}`
-  );
-  res.status(200).send(matchData.data);
+  match_data = match_data.matches
+    .filter((match) => {
+      return match.queue == 420;
+    })
+    .slice(0, 10);
+  for (const elem of match_data) {
+    let match = await axios.get(
+      `https://na1.api.riotgames.com/lol/match/v4/matches/${elem.gameId}?api_key=${process.env.api_key}`
+    );
+    elem.matchData = match.data;
+  }
+  matchData = res.status(200).send(match_data);
 });
 
 //get match timeline info
@@ -42,6 +41,8 @@ app.get("/matchtimeline/:matchId", async (req, res) => {
   let matchTimeline = await axios.get(
     `https://na1.api.riotgames.com/lol/match/v4/timelines/by-match/${req.params.matchId}?api_key=${process.env.api_key}`
   );
+  console.log(matchTimeline.data);
+  res.send(matchTimeline.data);
 });
 
 app.get("*", (req, res) => {
