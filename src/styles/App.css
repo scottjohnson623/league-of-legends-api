@@ -4,17 +4,6 @@
   width: 100%;
 }
 
-.header {
-  height: 10vh;
-  background-color: red;
-  width: 100vw;
-  position: fixed;
-  top: 0;
-  font-size: 1em;
-  font-family: "Bungee Inline";
-  text-align: center;
-  z-index: 2;
-}
 .body {
   margin-top: 15vh;
   height: 85vh;
@@ -45,11 +34,33 @@ body {
     width: 80vw;
     height: 80vh;
   }
+  .header {
+    height: 10vh;
+    background-color: red;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    font-size: 1em;
+    font-family: "Bungee Inline";
+    text-align: center;
+    z-index: 2;
+  }
 }
 @media only screen and (min-width: 1200px) {
   .chart {
     margin: auto;
     width: 40%;
     height: 30%;
+  }
+  .header {
+    height: 10vh;
+    background-color: red;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    font-size: 4em;
+    font-family: "Bungee Inline";
+    text-align: center;
+    z-index: 2;
   }
 }
