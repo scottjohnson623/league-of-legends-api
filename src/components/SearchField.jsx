@@ -45,6 +45,7 @@ export default function SearchField() {
       let match = await axios.get(`/api/${summonerName}/${championID}`);
       console.log("match", match);
       dispatch({ type: "SET_MATCHES", payload: match.data });
+      dispatch({ type: "TOGGLE_LOADING" });
     } catch (err) {
       console.log(err);
     }
@@ -80,6 +81,7 @@ export default function SearchField() {
           outline
           rounded
           onClick={() => {
+            dispatch({ type: "TOGGLE_LOADING" });
             getData();
             dispatch({
               type: "SET_CHAMPIONNAME",

@@ -7,10 +7,20 @@ import GoldChart from "./components/GoldChart";
 import Header from "./components/Header";
 function App() {
   const view = useSelector((state) => state.view);
+  const loading = useSelector((state) => state.loading);
   return (
     <div>
       <Header />
       <div className="body">
+        {loading ? (
+          <div className="spinner">
+            <div className="bounce1"></div>
+            <div className="bounce2"></div>
+            <div className="bounce3"></div>
+          </div>
+        ) : (
+          <></>
+        )}
         {view === "main" ? (
           <>
             <SearchField />

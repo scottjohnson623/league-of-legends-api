@@ -12,6 +12,7 @@ let initialState = {
   participantID: "",
   chartOptions: {},
   chartReady: false,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -49,6 +50,9 @@ const reducer = (state = initialState, action) => {
     }
     case "SET_CSGRAPH": {
       return { ...state, csGraph: action.payload };
+    }
+    case "TOGGLE_LOADING": {
+      return { ...state, loading: !state.loading };
     }
     default: {
       return state;

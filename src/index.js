@@ -4,6 +4,7 @@ import "./styles/index.css";
 import "./styles/matchcards.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import "mdbreact/dist/css/mdb.css";
+import "./styles/spinner.css";
 import App from "./App";
 import store from "./reducers/index";
 import { Provider } from "react-redux";

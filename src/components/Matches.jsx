@@ -52,6 +52,7 @@ export default function Matches() {
     dispatch({ type: "SET_GOLDGRAPH", payload: golddatapoints });
     dispatch({ type: "SET_CSGRAPH", payload: csdatapoints });
     dispatch({ type: "SET_VIEW", payload: "charts" });
+    dispatch({ type: "TOGGLE_LOADING" });
   }
   //function to make cards of match history
   function postMatchData() {
@@ -80,6 +81,7 @@ export default function Matches() {
               id={divId}
               className="matchcardwin"
               onClick={(e) => {
+                dispatch({ type: "TOGGLE_LOADING" });
                 analyzeGame(divId);
               }}
             >
@@ -114,6 +116,7 @@ export default function Matches() {
               id={divId}
               className="matchcardloss"
               onClick={(e) => {
+                dispatch({ type: "TOGGLE_LOADING" });
                 analyzeGame(divId);
               }}
             >
