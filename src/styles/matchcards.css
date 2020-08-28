@@ -51,7 +51,7 @@
     position: relative;
     top: 5%;
     display: flex;
-    width: 90vw;
+    width: 95vw;
     flex-wrap: wrap;
     height: auto;
     margin: auto;
@@ -61,7 +61,6 @@
 }
 @media only screen and (min-width: 1200px) {
   .cardtext {
-    font-size: 19px;
     width: 60%;
     float: right;
   }
@@ -70,25 +69,27 @@
     background-color: #ffcccb;
     padding: 0;
     margin: 20px;
-    height: 20vh;
-    width: 45%;
+    height: 30vh;
+    width: 70%;
     cursor: pointer;
     border: 5px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.5em;
   }
   .matchcardwin {
     background-color: #add8e6;
     padding: 0;
     margin: 20px;
-    height: 20vh;
-    width: 45%;
+    height: 30vh;
+    width: 70%;
     cursor: pointer;
     border: 5px solid black;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 1.5em;
   }
   .matches {
     position: relative;
@@ -100,5 +101,9 @@
     margin: auto;
     justify-content: center;
     align-items: center;
+  }
+  .splashimg {
+    height: 20vh;
+    width: 20vh;
   }
 }
